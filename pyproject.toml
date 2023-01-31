@@ -1,0 +1,75 @@
+[tool.poetry]
+name = "fastapi-template"
+version = "0.1.0"
+description = ""
+authors = ["emmanesp"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.85.1"
+uvicorn = {extras = ["standard"], version = "^0.19.0"}
+requests = "^2.28.1"
+coverage = "^6.5.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+
+[tool.black]
+line-length = 80
+exclude = '''
+  /(
+      \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  '''
+
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = true
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = false
+ignore-nested-functions = false
+ignore-nested-classes = true
+ignore-setters = false
+fail-under = 50
+exclude = ["setup.py", "docs", "build"]
+ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*"]
+verbose = 1
+quiet = false
+whitelist-regex = []
+color = true
+omit-covered-files = false
+generate-badge = "."
+badge-format = "svg"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+tag_format = "v$major.$minor.$patch"
+version_files = [
+    "app/__init__.py",
+    "pyproject.toml:version"
+]
+
+[tool.vulture]
+paths = ["app", "tests"]
+min_confidence = 80
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 80
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

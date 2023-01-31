@@ -1,0 +1,12 @@
+__pycache__/
+.pytest_cache/
+.mypy_cache
+
+.vscode/
+.DS_Store
+
+.env
+db-data/
+
+interrogate_badge.svg
+.coverage
